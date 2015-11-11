@@ -10,6 +10,7 @@ public:
     Relation(std::string l, std::string r, Relation::Opcode oper);
     Relation(Expression * left, Expression * right,Relation::Opcode oper);
     long calculate();
+    QJsonObject toJson();
 private:
     Opcode op;
     std::string left;

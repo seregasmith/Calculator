@@ -10,6 +10,7 @@ public:
     Logical(std::string left, std::string right);
     Logical(Expression * left, Expression * right,Logical::Opcode oper);
     long calculate();
+    QJsonObject toJson();
 private:
     Opcode op;
     std::string left;

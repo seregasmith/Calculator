@@ -1,6 +1,7 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 #include <string>
+#include <QJsonObject>
 
 class Expression
 {
@@ -13,6 +14,7 @@ public:
         ///TODO: implement
         return -1;
     }
+    virtual QJsonObject toJson(){}
 };
 
 #endif // EXPRESSION_H

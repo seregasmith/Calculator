@@ -1,5 +1,8 @@
 #include "primary.h"
 #include <stdexcept>
+#include <stdio.h>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 Primary::Primary()
 {
@@ -33,4 +36,25 @@ long Primary::calculate(){
         return m_left->calculate() * m_right->calculate();
     if(op == DEVIDE)
         return m_left->calculate() / m_right->calculate();
+}
+
+QJsonObject Primary::toJson(){
+    if(op == INTEGER)
+    {
+        QJsonObject * j_obj = new QJsonObject();
+        j_obj->insert("value",QJsonValue((double)m_val));
+        return *j_obj;
+    }
+    QString operation;
+    if(op == PLUS) operation = "+";
+    if(op == MINUS) operation = "-";
+    if(op == PRODUCT) operation = "*";
+    if(op == DEVIDE) operation = "/";
+    QJsonObject left = m_left->toJson();
+    QJsonObject right = m_right->toJson();
+    QJsonObject * j_obj = new QJsonObject();
+    j_obj->insert("left_operand",QJsonValue(left));
+    j_obj->insert("right_operand",QJsonValue(right));
+    j_obj->insert("operation",QJsonValue(operation));
+    return *j_obj;
 }

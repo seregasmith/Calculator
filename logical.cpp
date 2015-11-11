@@ -1,5 +1,7 @@
 #include "logical.h"
 #include <stdexcept>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 Logical::Logical()
 {
@@ -22,4 +24,18 @@ long Logical::calculate(){
         return (left or right) ? 1 : 0;
     if( op == XOR )
         return (left xor right) ? 1 : 0;
+}
+
+QJsonObject Logical::toJson(){
+    QString operation;
+    if(op == AND) operation = "and";
+    if(op == OR) operation = "or";
+    if(op == XOR) operation = "xor";
+    QJsonObject left = m_left->toJson();
+    QJsonObject right = m_right->toJson();
+    QJsonObject * j_obj = new QJsonObject();
+    j_obj->insert("left_operand",QJsonValue(left));
+    j_obj->insert("right_operand",QJsonValue(right));
+    j_obj->insert("operation",QJsonValue(operation));
+    return *j_obj;
 }

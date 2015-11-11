@@ -15,6 +15,7 @@ public:
     }
 
     long calculate();
+    QJsonObject toJson();
 private:
     Opcode op;
     std::string left;

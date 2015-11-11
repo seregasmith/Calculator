@@ -14,15 +14,28 @@
 #include <cmath>
 #include <map>
 
+////TEST
+#include <QJsonDocument>
+//#include <QJsonObject>
 
 void Parser::test(){
     std::string str = "(10+9)/10>0xor(10+9)*4=0";
+//    std::string str = "5+4";
     Expression * expressionTree = parseExpression(str);
 
     long result = expressionTree->calculate();
+    QJsonObject result_json = expressionTree->toJson();
+    QJsonDocument j_doc(result_json);
 
     std::cout << "RESULT: "<< result <<"\n";
-
+    std::cout << "RESULT JSON: "<< QString(j_doc.toJson()).toStdString() <<"\n";
+//    QJsonObject * j_obj = new QJsonObject();
+//    j_obj->insert("left_operand",QJsonValue(2));
+//    j_obj->insert("right_operand",QJsonValue(3));
+//    j_obj->insert("operation",QJsonValue("+"));
+//    QJsonDocument * j_doc = new QJsonDocument(*j_obj);
+//    QString str(j_doc->toJson());
+//    std::cout << "RESULT: "<< str.toStdString() <<"\n";
 }
 
 Expression * Parser::parse(){
