@@ -2,8 +2,11 @@
 
 #include <QtCore>
 #include <iostream>
+#include <string>
 
 #include "helper.h"
+#include "parser.h"
+#include "expression.h"
 
 class Task : public QObject
 {
@@ -18,6 +21,14 @@ public slots:
 
         std::cout << "\n";
         helper::printHelp();
+        Parser::test();
+
+//        std::string input = "1+(26-98)/15+77<28";
+//        Parser * parser = new Parser(input);
+//        Expression * expressionTree = parser->parse();
+//        long result = expressionTree->calculate();
+
+//        std::cout << "RESULT: "<< result <<"\n";
         emit finished();
     }
 

@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core
+CONFIG += c++14
+CONFIG += c++11
 
 QT       -= gui
 
@@ -17,8 +19,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     parser.cpp \
-    helper.cpp
+    helper.cpp \
+    expression.cpp \
+    logical.cpp \
+    primary.cpp \
+    relation.cpp
 
 HEADERS += \
     parser.h \
-    helper.h
+    helper.h \
+    expression.h \
+    logical.h \
+    primary.h \
+    relation.h
